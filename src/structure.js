@@ -168,6 +168,35 @@ function createMaterials() {
     roof: new THREE.MeshStandardMaterial({ color: '#6d5e4c', roughness: 0.95 }),
     tree: new THREE.MeshStandardMaterial({ color: '#5c6547', roughness: 1 }),
     hill: new THREE.MeshStandardMaterial({ vertexColors: true, flatShading: true, roughness: 1 }),
+    fieldWood: new THREE.MeshStandardMaterial({ color: '#5d4630', roughness: 0.92 }),
+    fieldDark: new THREE.MeshStandardMaterial({ color: '#3a2a1c', roughness: 0.95 }),
+    metal: new THREE.MeshStandardMaterial({ color: '#30312c', roughness: 0.5, metalness: 0.6 }),
+    oil: new THREE.MeshStandardMaterial({
+      color: '#0b0806',
+      roughness: 0.18,
+      metalness: 0.3,
+      emissive: '#2a1608',
+      emissiveIntensity: 0.15,
+    }),
+    oilStain: new THREE.MeshBasicMaterial({
+      color: '#090705',
+      transparent: true,
+      opacity: 0.14,
+      depthWrite: false,
+    }),
+    window: new THREE.MeshStandardMaterial({
+      color: '#241f16',
+      roughness: 0.45,
+      metalness: 0.05,
+      emissive: '#ffb35c',
+      emissiveIntensity: 0,
+    }),
+    drop: new THREE.MeshBasicMaterial({
+      color: '#ffb35c',
+      transparent: true,
+      opacity: 0,
+      depthWrite: false,
+    }),
   }
 }
 
@@ -742,6 +771,259 @@ function buildDust(random) {
 }
 
 /* --------------------------------------------------------------------------
+   field, camp, canaleta and the drop
+   -------------------------------------------------------------------------- */
+
+function buildMiniDerrick(materials) {
+  const group = new THREE.Group()
+  const HEIGHT = 8.2
+  const BASE = 1.45
+  const TOP = 0.58
+
+  const corner = (index, y) => {
+    const t = y / HEIGHT
+    const hx = THREE.MathUtils.lerp(BASE, TOP, t)
+    const hz = hx * 0.82
+    return new THREE.Vector3(
+      (index === 0 || index === 3 ? -1 : 1) * hx,
+      y,
+      (index < 2 ? -1 : 1) * hz
+    )
+  }
+
+  for (let i = 0; i < 4; i++) {
+    group.add(beam(corner(i, 0), corner(i, HEIGHT), 0.11, materials.fieldWood))
+  }
+
+  const levels = [0.05, 2.7, 5.4, 8.1]
+  for (let level = 0; level < levels.length; level++) {
+    const y = levels[level]
+    for (let i = 0; i < 4; i++) {
+      const j = (i + 1) % 4
+      group.add(beam(corner(i, y), corner(j, y), 0.075, materials.fieldDark))
+    }
+    if (level > 0) {
+      const below = levels[level - 1]
+      for (let i = 0; i < 4; i++) {
+        const j = (i + 1) % 4
+        group.add(beam(corner(i, below), corner(j, y), 0.05, materials.fieldWood))
+        group.add(beam(corner(j, below), corner(i, y), 0.05, materials.fieldWood))
+      }
+    }
+  }
+
+  const crown = new THREE.Mesh(new THREE.BoxGeometry(1.15, 0.14, 0.95), materials.fieldDark)
+  crown.position.y = HEIGHT + 0.1
+  crown.castShadow = true
+  group.add(crown)
+
+  const crownWheel = new THREE.Mesh(new THREE.TorusGeometry(0.22, 0.035, 6, 16), materials.metal)
+  crownWheel.position.set(0, HEIGHT + 0.26, 0)
+  crownWheel.rotation.y = Math.PI / 2
+  group.add(crownWheel)
+
+  return group
+}
+
+function buildField(materials) {
+  const group = new THREE.Group()
+  group.name = 'campo'
+
+  const positions = [
+    [-19, -9, 0.72, 0.2],
+    [-30, 7, 0.58, -0.4],
+    [-15, 20, 0.62, 0.8],
+    [17, -13, 0.68, -0.2],
+    [28, 8, 0.55, 0.3],
+    [13, 23, 0.6, -0.7],
+    [-36, -17, 0.5, 0.5],
+    [34, -5, 0.48, -0.5],
+    [0, -28, 0.45, 0.1],
+  ]
+
+  const proto = buildMiniDerrick(materials)
+  const items = []
+
+  for (const [x, z, scale, rotation] of positions) {
+    const derrick = proto.clone(true)
+    derrick.position.set(x, 0, z)
+    derrick.rotation.y = rotation
+    derrick.scale.setScalar(0.001)
+    derrick.visible = false
+    derrick.userData.baseScale = scale
+    group.add(derrick)
+    items.push(derrick)
+  }
+
+  group.userData.items = items
+  return group
+}
+
+function buildHouse(materials, width, depth, height) {
+  const group = new THREE.Group()
+
+  const walls = new THREE.Mesh(UNIT_BOX, materials.house)
+  walls.scale.set(width, height, depth)
+  walls.position.y = height / 2
+  walls.castShadow = true
+  walls.receiveShadow = true
+  group.add(walls)
+
+  const roof = new THREE.Mesh(new THREE.ConeGeometry(0.72, 0.55, 4), materials.roof)
+  roof.position.y = height + 0.27
+  roof.rotation.y = Math.PI / 4
+  roof.scale.set(width * 0.86, 1, depth * 0.86)
+  roof.castShadow = true
+  group.add(roof)
+
+  for (const wx of [-width * 0.22, width * 0.22]) {
+    const window = new THREE.Mesh(
+      new THREE.PlaneGeometry(width * 0.15, height * 0.22),
+      materials.window
+    )
+    window.position.set(wx, height * 0.54, depth / 2 + 0.008)
+    group.add(window)
+  }
+
+  return group
+}
+
+function buildCamp(materials) {
+  const group = new THREE.Group()
+  group.name = 'campamento'
+
+  const items = []
+  const houses = [
+    [-11, -7, 4.2, 3.2, 2.4, 0.25],
+    [12, -8, 3.6, 2.8, 2.2, -0.35],
+    [-17, 7, 4.8, 3.0, 2.8, 0.12],
+    [18, 6, 3.8, 3.2, 2.2, 0.4],
+    [-7, 13, 3.2, 2.6, 2.0, -0.2],
+    [9, 15, 4.0, 2.8, 2.4, 0.3],
+  ]
+
+  for (const [x, z, width, depth, height, rotation] of houses) {
+    const house = buildHouse(materials, width, depth, height)
+    house.position.set(x, 0, z)
+    house.rotation.y = rotation
+    house.scale.setScalar(0.001)
+    house.visible = false
+    group.add(house)
+    items.push(house)
+  }
+
+  const warehouse = new THREE.Group()
+  const warehouseBox = new THREE.Mesh(UNIT_BOX, materials.house)
+  warehouseBox.scale.set(7, 3.2, 4.5)
+  warehouseBox.position.y = 1.6
+  warehouseBox.castShadow = true
+  warehouseBox.receiveShadow = true
+  warehouse.add(warehouseBox)
+  const warehouseRoof = new THREE.Mesh(new THREE.ConeGeometry(0.72, 0.45, 4), materials.roof)
+  warehouseRoof.position.y = 3.42
+  warehouseRoof.rotation.y = Math.PI / 4
+  warehouseRoof.scale.set(7 * 0.8, 1, 4.5 * 0.8)
+  warehouse.add(warehouseRoof)
+  for (const wx of [-2.2, 0, 2.2]) {
+    const window = new THREE.Mesh(new THREE.PlaneGeometry(0.5, 0.5), materials.window)
+    window.position.set(wx, 1.7, 2.26)
+    warehouse.add(window)
+  }
+  warehouse.position.set(22, 0, -12)
+  warehouse.rotation.y = -0.15
+  warehouse.scale.setScalar(0.001)
+  warehouse.visible = false
+  group.add(warehouse)
+  items.push(warehouse)
+
+  const usina = new THREE.Group()
+  const usinaBox = new THREE.Mesh(UNIT_BOX, materials.house)
+  usinaBox.scale.set(5, 4, 4)
+  usinaBox.position.y = 2
+  usinaBox.castShadow = true
+  usinaBox.receiveShadow = true
+  usina.add(usinaBox)
+  const chimney = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.3, 7, 10), materials.fieldDark)
+  chimney.position.set(1.5, 5.5, 0)
+  chimney.castShadow = true
+  usina.add(chimney)
+  const usinaWindow = new THREE.Mesh(new THREE.PlaneGeometry(0.65, 0.65), materials.window)
+  usinaWindow.position.set(-0.7, 2.1, 2.01)
+  usina.add(usinaWindow)
+  usina.position.set(-22, 0, -4)
+  usina.rotation.y = 0.18
+  usina.scale.setScalar(0.001)
+  usina.visible = false
+  group.add(usina)
+  items.push(usina)
+
+  const light = new THREE.PointLight('#ffb35c', 0, 34, 1.6)
+  light.position.set(8, 7, 1)
+  group.add(light)
+
+  group.userData.items = items
+  group.userData.light = light
+  group.userData.windowMaterials = [materials.window]
+
+  return group
+}
+
+function buildCanaleta(materials) {
+  const group = new THREE.Group()
+  group.name = 'canaleta'
+
+  const trough = new THREE.Mesh(UNIT_BOX, materials.woodDark)
+  trough.scale.set(2.2, 0.18, 0.6)
+  trough.position.set(3.1, 0.25, 1.2)
+  trough.rotation.y = -0.18
+  trough.castShadow = true
+  trough.receiveShadow = true
+  group.add(trough)
+
+  const pool = new THREE.Mesh(new THREE.CircleGeometry(0.55, 24), materials.oil)
+  pool.rotation.x = -Math.PI / 2
+  pool.position.set(3.1, 0.345, 1.2)
+  group.add(pool)
+
+  const stain = new THREE.Mesh(new THREE.CircleGeometry(1.5, 32), materials.oilStain)
+  stain.rotation.x = -Math.PI / 2
+  stain.position.set(3.1, 0.02, 1.2)
+  stain.scale.setScalar(0.4)
+  group.add(stain)
+
+  const drop = new THREE.Mesh(new THREE.SphereGeometry(0.08, 14, 14), materials.drop)
+  drop.position.set(3.1, 0.45, 1.2)
+  drop.visible = false
+  group.add(drop)
+
+  const light = new THREE.PointLight('#ff9a3c', 0, 5, 2)
+  light.position.copy(drop.position)
+  group.add(light)
+
+  return { group, drop, light, pool, stain }
+}
+
+function applyTowerClip(root, plane) {
+  const cache = new Map()
+
+  const clip = (material) => {
+    if (cache.has(material)) return cache.get(material)
+    const clone = material.clone()
+    clone.clippingPlanes = [plane]
+    clone.clipShadows = true
+    cache.set(material, clone)
+    return clone
+  }
+
+  root.traverse((object) => {
+    if (!object.isMesh) return
+    object.material = Array.isArray(object.material)
+      ? object.material.map(clip)
+      : clip(object.material)
+  })
+}
+
+/* --------------------------------------------------------------------------
    site
    -------------------------------------------------------------------------- */
 
@@ -754,15 +1036,77 @@ export function buildSite(stage) {
   const hills = buildHills(random, materials)
   const fence = buildFence(materials)
   const dust = buildDust(random)
+  const field = buildField(materials)
+  const camp = buildCamp(materials)
+  const canal = buildCanaleta(materials)
 
-  stage.scene.add(tower, ground, hills, fence, dust.points)
+  stage.scene.add(tower, ground, hills, fence, dust.points, field, camp, canal.group)
+  applyTowerClip(tower, stage.towerClip)
 
   const sheave = tower.userData.sheave
+  const fieldItems = field.userData.items
+  const campItems = camp.userData.items
+  const campLight = camp.userData.light
+  const windowMaterials = camp.userData.windowMaterials
+  const drop = canal.drop
+  const dropLight = canal.light
+  const stain = canal.stain
+  const pool = canal.pool
 
-  function update(_time, dt) {
-    if (sheave) sheave.rotation.z -= dt * 0.45
-    dust.update(dt)
+  function setState(state) {
+    const towerProgress = THREE.MathUtils.clamp(state.tower ?? 1, 0, 1)
+    stage.towerClip.constant = 0.1 + towerProgress * 16.4
+
+    const fieldProgress = THREE.MathUtils.clamp(state.field ?? 0, 0, 1)
+    for (let i = 0; i < fieldItems.length; i++) {
+      const item = fieldItems[i]
+      const start = i / fieldItems.length
+      const end = (i + 1) / fieldItems.length
+      const local = THREE.MathUtils.smoothstep(fieldProgress, start, end)
+      item.visible = local > 0.002
+      const scale = 0.001 + local
+      item.scale.setScalar(item.userData.baseScale * scale)
+    }
+
+    const campProgress = THREE.MathUtils.clamp(state.camp ?? 0, 0, 1)
+    for (let i = 0; i < campItems.length; i++) {
+      const item = campItems[i]
+      const start = i / campItems.length
+      const end = (i + 1) / campItems.length
+      const local = THREE.MathUtils.smoothstep(campProgress, start, end)
+      item.visible = local > 0.002
+      item.scale.setScalar(0.001 + local)
+    }
+
+    const lights = THREE.MathUtils.clamp(state.lights ?? 0, 0, 1)
+    for (const material of windowMaterials) {
+      material.emissiveIntensity = lights * 2.6
+    }
+    campLight.intensity = lights * 2.2
+
+    const dropProgress = THREE.MathUtils.clamp(state.drop ?? 0, 0, 1)
+    drop.visible = dropProgress > 0.01
+    drop.position.y = 0.45 + dropProgress * 1.9
+    drop.userData.baseY = drop.position.y
+    drop.scale.setScalar(0.5 + dropProgress * 1.3)
+    drop.material.opacity = dropProgress
+    dropLight.intensity = dropProgress * 1.5
+    dropLight.position.copy(drop.position)
+    stain.scale.setScalar(0.4 + dropProgress * 1.5)
+    stain.material.opacity = 0.1 + dropProgress * 0.5
+    pool.material.emissiveIntensity = 0.15 + dropProgress * 0.8
   }
 
-  return { update, tower }
+  function update(time, dt) {
+    if (sheave) sheave.rotation.z -= dt * 0.45
+    dust.update(dt)
+    if (drop.visible) {
+      drop.position.y = drop.userData.baseY + Math.sin(time * 2.4) * 0.025
+      dropLight.position.copy(drop.position)
+    }
+  }
+
+  setState({ tower: 1, field: 0, camp: 0, lights: 0, drop: 0 })
+
+  return { update, tower, field, camp, canal, setState, materials }
 }
