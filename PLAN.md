@@ -98,16 +98,18 @@ de la nota: hechos, fechas, cifras, nombres, citas y legado.
 ## Arquitectura
 
 ```
-index.html              shell, contenido, timeline, índice, créditos
-src/main.js             arranque y loop
-src/chapters.js         cámaras, atmósferas, datos y metadatos por acto
-src/story.js            scroll, cámara, modo cine, timeline, índice
-src/scene.js            stage, cámara, luces, atmósfera, órbita
-src/structure.js        castillete, campo de torres, campamento, canaleta
-src/visuals.js          medidor de profundidad, pozos, gráfico, contadores
-src/style.css           sistema visual, responsive, reduced motion
-assets/photos/          fotos de archivo
-assets/fonts/           Fraunces + IBM Plex Sans
+index.html                        portada del proyecto
+experiencia/index.html            shell, contenido, timeline, índice, créditos
+experiencia/src/main.js           arranque y loop
+experiencia/src/chapters.js       cámaras, atmósferas, datos y metadatos por acto
+experiencia/src/story.js          scroll, cámara, modo cine, timeline, índice
+experiencia/src/scene.js          stage, cámara, luces, atmósfera, órbita
+experiencia/src/structure.js      castillete, campo de torres, campamento, canaleta
+experiencia/src/visuals.js        medidor de profundidad, pozos, gráfico, contadores
+experiencia/src/style.css         sistema visual, responsive, reduced motion
+experiencia/assets/photos/        fotos de archivo
+experiencia/assets/fonts/         Fraunces + IBM Plex Sans
+artifact/index.html               línea de tiempo standalone
 ```
 
 - Canvas fijo; capítulos con `position: sticky` en desktop y flujo normal en mobile.

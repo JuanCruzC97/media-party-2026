@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Del pozo de agua al oro negro: documental interactivo sobre el descubrimiento del petróleo en Comodoro Rivadavia y el nacimiento de YPF." />
+  <meta name="theme-color" content="#0d211e" />
+  <title>Del pozo de agua al oro negro · Comodoro Rivadavia y YPF</title>
+
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  <link rel="preload" href="./assets/fonts/fraunces-600.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="./assets/fonts/ibm-plex-sans-400.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="./src/style.css" />
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "./vendor/three.module.js"
+      }
+    }
+  </script>
+  <script type="module" src="./src/main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#act-1">Saltar al contenido</a>
+
+  <div class="sky" aria-hidden="true"></div>
+  <canvas id="scene" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+
+  <header class="site-header" id="site-header">
+    <a class="brand" href="#act-0" aria-label="ADNSUR Efemérides, volver al inicio">
+      <span class="brand__name">ADNSUR</span>
+      <span class="brand__sub">Efemérides</span>
+    </a>
+    <p class="site-header__title">Del pozo de agua al oro negro</p>
+    <div class="site-header__actions">
+      <button class="btn" id="index-open" type="button" aria-haspopup="dialog" aria-controls="index-dialog">
+        Índice
+      </button>
+      <button class="btn btn--cine" id="cinema-toggle" type="button" aria-pressed="false">
+        <span class="btn__dot" aria-hidden="true"></span>
+        <span class="btn__label">Modo cine</span>
+      </button>
+    </div>
+  </header>
+
+  <nav class="timeline" aria-label="Recorrido de la historia">
+    <div class="timeline__track" aria-hidden="true"><span id="timeline-fill"></span></div>
+    <ol>
+      <li><a href="#act-0" data-target="act-0"><span class="timeline__year">1907</span><span class="timeline__label">El día</span></a></li>
+      <li><a href="#act-1" data-target="act-1"><span class="timeline__year">1903</span><span class="timeline__label">Agua</span></a></li>
+      <li><a href="#act-2" data-target="act-2"><span class="timeline__year">1907</span><span class="timeline__label">Pozo</span></a></li>
+      <li><a href="#act-3" data-target="act-3"><span class="timeline__year">1907</span><span class="timeline__label">Hallazgo</span></a></li>
+      <li><a href="#act-4" data-target="act-4"><span class="timeline__year">1910</span><span class="timeline__label">Estado</span></a></li>
+      <li><a href="#act-5" data-target="act-5"><span class="timeline__year">1922</span><span class="timeline__label">YPF</span></a></li>
+      <li><a href="#act-6" data-target="act-6"><span class="timeline__year">1923</span><span class="timeline__label">Mosconi</span></a></li>
+      <li><a href="#act-7" data-target="act-7"><span class="timeline__year">1930</span><span class="timeline__label">Huella</span></a></li>
+      <li><a href="#act-8" data-target="act-8"><span class="timeline__year">Hoy</span><span class="timeline__label">Explorar</span></a></li>
+    </ol>
+  </nav>
+
+  <main id="story">
+    <!-- 00 · PRÓLOGO -->
+    <section class="act act--hero" id="act-0" data-act="0" data-year="1907" data-label="El día" style="--act-h: 100svh">
+      <div class="hero__grid">
+        <div class="hero__copy">
+          <p class="eyebrow"><span class="eyebrow__brand">ADNSUR</span> Efemérides · 13 de diciembre</p>
+          <h1 class="hero__title">Del pozo de agua<br /><em>al oro negro</em></h1>
+          <p class="hero__deck">Comodoro Rivadavia buscaba agua potable y encontró petróleo. Ocho actos para reconstruir el hallazgo de 1907, el nacimiento de YPF y la huella que dejó en la ciudad.</p>
+          <div class="hero__meta">
+            <span><strong>1903–1930</strong>La historia</span>
+            <span><strong>Kilómetro 3</strong>El lugar</span>
+            <span><strong>8 actos</strong>El recorrido</span>
+          </div>
+          <a class="scroll-cue" href="#act-1">
+            <span class="scroll-cue__line" aria-hidden="true"></span>
+            <span>Bajá para empezar</span>
+          </a>
+        </div>
+        <figure class="hero__plate">
+          <div class="plate plate--hero">
+            <img src="./assets/photos/hero-derrick.jpg" width="1220" height="720" alt="Torre de perforación de madera y construcciones del campamento, en una fotografía sepia de comienzos del siglo XX." />
+          </div>
+          <figcaption>Comodoro Rivadavia, días después del descubrimiento. Archivo: ADNSUR.</figcaption>
+        </figure>
+      </div>
+      <p class="hero__credit">Una historia de viento, agua y petróleo · 1907</p>
+    </section>
+
+    <!-- 01 · 1903–1906 -->
+    <section class="act" id="act-1" data-act="1" data-year="1903" data-label="Agua" style="--act-h: 220vh">
+      <div class="act__sticky">
+        <div class="act__copy">
+          <header class="act__head">
+            <p class="act__kicker">1903–1906 · La búsqueda</p>
+            <h2 class="act__title">Buscaban agua.</h2>
+          </header>
+          <p class="act__lede">Comodoro Rivadavia había nacido como un pequeño poblado fundado para tener una salida al mar. La Dirección de Minas, Geología e Hidrología del Gobierno Nacional envió una perforadora para encontrar agua potable.</p>
+          <p>En 1903 la máquina apenas alcanzó los <strong>107 metros</strong>. En 1906 se reactivaron las gestiones para traer otra perforadora: el <strong>14 de diciembre</strong> se descargó la <strong>“Wenceslao Escalante”</strong>, una de las cuatro del sistema Fauck y Cía. adquiridas en Viena.</p>
+          <div class="stat-row">
+            <div class="stat">
+              <span class="stat__value">107</span><span class="stat__unit">m</span>
+              <span class="stat__label">primera perforación · 1903</span>
+            </div>
+            <div class="stat">
+              <span class="stat__value">4</span><span class="stat__unit">equipos</span>
+              <span class="stat__label">sistema Fauck y Cía. · Viena</span>
+            </div>
+          </div>
+          <details class="doc">
+            <summary>Documento · La máquina que llegó de Viena</summary>
+            <div class="doc__body">
+              <p>La “Wenceslao Escalante” fue una de las cuatro perforadoras del sistema Fauck y Cía. compradas en Viena. Su descarga, el 14 de diciembre de 1906, marcó el reinicio de los trabajos en el poblado.</p>
+            </div>
+          </details>
+        </div>
+        <figure class="act__plate">
+          <div class="plate">
+            <img src="./assets/photos/antes.jpg" width="1113" height="720" alt="Vista del poblado de Comodoro Rivadavia con construcciones bajas y el terreno patagónico, en blanco y negro." />
+          </div>
+          <figcaption>Comodoro Rivadavia, tres años antes del descubrimiento del petróleo. Archivo: ADNSUR.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 02 · 1907 -->
+    <section class="act" id="act-2" data-act="2" data-year="1907" data-label="Pozo" style="--act-h: 240vh">
+      <div class="act__sticky">
+        <div class="act__copy">
+          <header class="act__head">
+            <p class="act__kicker">1907 · El pozo 2</p>
+            <h2 class="act__title">La máquina empezó a buscar agua.</h2>
+          </header>
+          <p class="act__lede">El <strong>24 de marzo</strong> comenzaron los trabajos. <strong>José Fuchs</strong>, técnico en perforación contratado en Europa, estaba a cargo del equipo.</p>
+          <p>A mediados de año, problemas con el personal interrumpieron las tareas. <strong>Julio Krause</strong>, jefe de la Sección Hidrología, envió a <strong>Humberto Beghin</strong> para ordenar el campamento; el auxiliar mecánico terminó al frente de la perforación. En <strong>noviembre</strong>, el pozo número 2 alcanzó los <strong>500 metros</strong>. Krause consultó a Fuchs por telégrafo y el especialista alemán autorizó continuar.</p>
+          <div class="depth" data-depth-gauge aria-label="Profundidad del pozo: 500 metros">
+            <div class="depth__head"><span>Profundidad</span><strong><span data-depth-value>0</span> m</strong></div>
+            <div class="depth__bar" aria-hidden="true">
+              <span class="depth__fill"></span>
+              <i class="depth__tick" style="--at: 0.214">107</i>
+              <i class="depth__tick" style="--at: 0.935">500</i>
+              <i class="depth__tick" style="--at: 1">535</i>
+            </div>
+            <p class="depth__caption">El pozo 2 llegó a 500 m en noviembre. La perforación final se detuvo a 535 m.</p>
+          </div>
+          <details class="doc">
+            <summary>Documento · La decisión de seguir</summary>
+            <div class="doc__body">
+              <p>Cuando el pozo alcanzó los 500 metros, Krause consultó por telégrafo si era posible continuar la excavación. Fuchs dio el ok y las tareas siguieron. Esa decisión permitió llegar a los 535 metros donde apareció el kerosene.</p>
+            </div>
+          </details>
+        </div>
+        <div class="act__visual">
+          <figure class="act__plate act__plate--detail">
+            <div class="plate">
+              <img src="./assets/photos/hero-derrick.jpg" width="1220" height="720" alt="Detalle de la estructura de madera de la torre de perforación y los trabajadores en la base." />
+            </div>
+            <figcaption>Detalle de la torre y el campamento. Archivo: ADNSUR.</figcaption>
+          </figure>
+          <p class="visual-note">La torre se armó por niveles. La cámara la reconstruye mientras el pozo avanza.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 · 11–13 DICIEMBRE 1907 -->
+    <section class="act act--discovery" id="act-3" data-act="3" data-year="1907" data-label="Hallazgo" style="--act-h: 330vh">
+      <div class="discovery">
+        <p class="discovery__year" aria-hidden="true">1907</p>
+
+        <article class="dstep dstep--1" data-step="1">
+          <p class="dstep__date">11 de diciembre · La sospecha</p>
+          <p class="dstep__text">“Comunícole señor jefe que se cree haber dado con una napa de kerosene. Aumento en la inyección no se nota aún, pero sube toda mezclada con globitos y se siente olor a gas de kerosene. Irá cada dos horas el estado de la perforación. Se esperan instrucciones. Se continúa perforando.”</p>
+          <p class="dstep__attr">Fuchs y Beghin a Krause · Telegrama</p>
+        </article>
+
+        <article class="dstep dstep--2" data-step="2">
+          <p class="dstep__date">12 de diciembre · La orden</p>
+          <p class="dstep__text">“Para comprobar si encontró petróleo, suspenda trabajos de perforación y saque toda el agua del interior.”</p>
+          <p class="dstep__attr">Julio Krause a Beghin</p>
+        </article>
+
+        <div class="discovery__quote" data-step="3">
+          <p class="discovery__quote-date">13 de diciembre de 1907 · 8:00</p>
+          <blockquote>“¡Gran Dios! ¡Encontramos kerosene! Es del Estado, vamos a comunicarlo.”</blockquote>
+          <cite>Humberto Beghin · Kilómetro 3</cite>
+          <p class="discovery__confirm">“Garantizamos que es kerosene de la mejor calidad. Todo en buen estado.”<span>Beghin y Fuchs al Gobierno</span></p>
+        </div>
+
+        <div class="discovery__depth">
+          <span class="discovery__depth-label">Profundidad</span>
+          <span class="discovery__depth-value"><strong data-depth-value>0</strong> m</span>
+          <div class="discovery__depth-bar" aria-hidden="true">
+            <span class="discovery__depth-fill"></span>
+            <i style="--at: 0.2">107</i>
+            <i style="--at: 0.935">500</i>
+            <i style="--at: 1">535</i>
+          </div>
+        </div>
+
+        <p class="discovery__hint" aria-hidden="true">Seguí bajando <span>↓</span></p>
+      </div>
+    </section>
+
+    <!-- 04 · 1910–1919 -->
+    <section class="act" id="act-4" data-act="4" data-year="1910" data-label="Estado" style="--act-h: 220vh">
+      <div class="act__sticky">
+        <div class="act__copy">
+          <header class="act__head">
+            <p class="act__kicker">1910–1919 · El Estado</p>
+            <h2 class="act__title">El Estado no solo extrajo: construyó pueblo.</h2>
+          </header>
+          <p class="act__lede">En <strong>1910</strong> se creó la <strong>Dirección General de Explotación de Petróleo</strong>, presidida por el ingeniero <strong>Luis Huergo</strong>. Dependía de la Dirección de Minas, Geología e Hidrología del Ministerio de Agricultura.</p>
+          <p>Realizó las primeras gestiones para tener un puerto, construyó un muelle y adquirió otro en <strong>Caleta Córdova</strong>. También construyó casas, una proveeduría y otros servicios para contener al trabajador en un pueblo que recién crecía.</p>
+          <ul class="fact-list">
+            <li><span>1910</span>Primer marco estatal para el petróleo.</li>
+            <li><span>1919</span>Chalet Huergo, luego Monumento Nacional Histórico.</li>
+            <li><span>Puerto</span>Muelle propio y otro en Caleta Córdova.</li>
+          </ul>
+          <details class="doc">
+            <summary>Documento · El Chalet Huergo</summary>
+            <div class="doc__body">
+              <p>Construido en 1919, fue declarado Monumento Nacional Histórico y albergó a presidentes y figuras internacionales. Hoy forma parte del patrimonio de Comodoro Rivadavia.</p>
+            </div>
+          </details>
+        </div>
+        <div class="act__visual">
+          <figure class="map-card">
+            <svg viewBox="0 0 420 300" role="img" aria-label="Mapa esquemático de Comodoro Rivadavia con el puerto, Kilómetro 3, Kilómetro 8 y Caleta Córdova.">
+              <path class="map-sea" d="M0 0h420v300H0z" />
+              <path class="map-land" d="M0 0h205c-12 35-8 55 15 78 22 22 34 40 28 62-7 25-34 35-48 58-13 21-10 52 8 82 10 17 23 28 35 40H0z" />
+              <path class="map-coast" d="M205 0c-12 35-8 55 15 78 22 22 34 40 28 62-7 25-34 35-48 58-13 21-10 52 8 82 10 17 23 28 35 40" />
+              <path class="map-road" d="M90 246c38-30 62-58 80-92 16-32 28-64 44-94" />
+              <path class="map-road map-road--dash" d="M106 198c42-8 76-24 106-52 24-22 42-50 58-82" />
+              <circle class="map-dot map-dot--main" cx="106" cy="198" r="5" />
+              <circle class="map-dot" cx="90" cy="246" r="4" />
+              <circle class="map-dot" cx="196" cy="96" r="4" />
+              <circle class="map-dot" cx="165" cy="52" r="4" />
+              <text class="map-label" x="118" y="202">Kilómetro 3</text>
+              <text class="map-label" x="102" y="252">Kilómetro 8</text>
+              <text class="map-label" x="208" y="100">Puerto</text>
+              <text class="map-label" x="177" y="48">Caleta Córdova</text>
+              <text class="map-sea-label" x="315" y="176">Mar Argentino</text>
+              <text class="map-compass" x="368" y="52">N</text>
+              <path class="map-arrow" d="M368 60v-24m-7 9 7-9 7 9" />
+            </svg>
+            <figcaption>Mapa esquemático · Kilómetro 3, Kilómetro 8 y Caleta Córdova.</figcaption>
+          </figure>
+          <figure class="act__plate act__plate--small">
+            <div class="plate">
+              <img src="./assets/photos/despues.jpg" width="1079" height="720" alt="Vista del campamento y las construcciones de Comodoro Rivadavia pocos días después del descubrimiento, en blanco y negro." />
+            </div>
+            <figcaption>Fotografía de unos días después del descubrimiento. Fuente: “Medio Siglo del Petróleo Argentino”.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 · 1922 -->
+    <section class="act" id="act-5" data-act="5" data-year="1922" data-label="YPF" style="--act-h: 230vh">
+      <div class="act__sticky">
+        <div class="act__copy">
+          <header class="act__head">
+            <p class="act__kicker">1922 · Nace YPF</p>
+            <h2 class="act__title">Comodoro explicaba el país.</h2>
+          </header>
+          <p class="act__lede">Se creó <strong>Yacimientos Petrolíferos Fiscales</strong>. El <strong>general Mosconi</strong> fue su primer director e impulsó un plan de cuatro años que incluía la puesta en marcha de la destilería de <strong>Ensenada</strong>.</p>
+          <p>El <strong>22 de febrero</strong> se habilitó el primer surtidor de kerosene en Buenos Aires y el <strong>20 de junio</strong> el primero de nafta. En Comodoro había <strong>60 toneladas</strong> de petróleo almacenadas.</p>
+          <p>Argentina era el mayor consumidor de petróleo de América del Sur —por delante de Chile, Brasil y Venezuela— y el segundo productor detrás de Venezuela. Comodoro tenía <strong>130 de los 137 pozos</strong> del país.</p>
+          <div class="wells">
+            <div class="wells__head">
+              <strong><span data-count="130">0</span><small>/137</small></strong>
+              <span>pozos en Comodoro</span>
+            </div>
+            <div class="wells__grid" data-wells-grid aria-hidden="true"></div>
+            <div class="wells__legend"><span><i class="is-comodoro"></i>Comodoro</span><span><i class="is-other"></i>Resto del país</span></div>
+          </div>
+          <details class="doc">
+            <summary>Documento · Los primeros surtidores</summary>
+            <div class="doc__body">
+              <p>Mosconi habilitó en Buenos Aires el primer surtidor de kerosene el 22 de febrero de 1922 y el primero de nafta el 20 de junio. La medida buscaba aumentar la demanda de crudo destinada a combustibles.</p>
+            </div>
+          </details>
+        </div>
+        <figure class="act__plate act__plate--wide">
+          <div class="plate">
+            <img src="./assets/photos/pozos-1922.jpg" width="1238" height="720" alt="Paisaje patagónico con varias torres de perforación y el mar al fondo, fotografía sepia de 1922." />
+          </div>
+          <figcaption>Para 1922 Comodoro tenía 130 de los 137 pozos del país. Archivo: ADNSUR.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 06 · 1923–1930 -->
+    <section class="act" id="act-6" data-act="6" data-year="1923" data-label="Mosconi" style="--act-h: 230vh">
+      <div class="act__sticky">
+        <div class="act__copy">
+          <header class="act__head">
+            <p class="act__kicker">1923–1930 · La era Mosconi</p>
+            <h2 class="act__title">La producción se multiplicó.</h2>
+          </header>
+          <p class="act__lede">En <strong>1923</strong> el yacimiento produjo <strong>450.328 m³</strong>; <strong>343.889 m³</strong> eran de YPF, con <strong>89 pozos</strong>, y el resto de empresas privadas.</p>
+          <p>El <strong>1 de enero de 1927</strong> se habilitó la <strong>usina eléctrica central</strong> de <strong>25.000 HP</strong>, una de las grandes realizaciones de Mosconi. En <strong>1930</strong> la producción llegó a <strong>1.170.300 m³</strong>, de los cuales <strong>721.592</strong> eran de YPF. La gestión de Mosconi se extendió hasta <strong>septiembre de 1930</strong>.</p>
+          <div class="chart-card">
+            <div class="chart-card__head"><span>Producción del yacimiento</span><span>m³</span></div>
+            <div class="chart" data-chart>
+              <div class="chart__group">
+                <span class="chart__total">450.328</span>
+                <div class="chart__stack">
+                  <span class="chart__bar chart__bar--ypf" style="--h: 76.4"></span>
+                  <span class="chart__bar chart__bar--priv" style="--h: 23.6"></span>
+                </div>
+                <span class="chart__year">1923</span>
+              </div>
+              <div class="chart__group">
+                <span class="chart__total">1.170.300</span>
+                <div class="chart__stack">
+                  <span class="chart__bar chart__bar--ypf" style="--h: 61.7"></span>
+                  <span class="chart__bar chart__bar--priv" style="--h: 38.3"></span>
+                </div>
+                <span class="chart__year">1930</span>
+              </div>
+            </div>
+            <div class="chart__legend"><span><i class="is-ypf"></i>YPF</span><span><i class="is-priv"></i>Privados</span></div>
+          </div>
+          <div class="hp-card">
+            <span class="hp-card__value">25.000</span><span class="hp-card__unit">HP</span>
+            <p>Usina eléctrica central · 1 de enero de 1927</p>
+          </div>
+        </div>
+        <div class="act__visual">
+          <figure class="act__plate act__plate--small">
+            <div class="plate">
+              <img src="./assets/photos/pozos-1922.jpg" width="1238" height="720" alt="Campo de torres de perforación en la costa patagónica, fotografía histórica." />
+            </div>
+            <figcaption>El campo de pozos que explicaba la producción nacional. Archivo: ADNSUR.</figcaption>
+          </figure>
+          <p class="visual-note">La usina encendió el campamento. La cámara se aleja para mostrar el campo completo.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 · 1930–PRESENTE -->
+    <section class="act" id="act-7" data-act="7" data-year="1930" data-label="Huella" style="--act-h: 250vh">
+      <div class="act__sticky">
+        <div class="act__copy">
+          <header class="act__head">
+            <p class="act__kicker">1930–presente · La huella</p>
+            <h2 class="act__title">El oro negro sigue explicando la ciudad.</h2>
+          </header>
+          <p class="act__lede">El crecimiento de YPF trajo prosperidad: el <strong>Hospital Presidente Alvear</strong> de Kilómetro 3, una escuela y la capilla <strong>Santa Lucía</strong>; luego las gamelas, una proveeduría —hoy el <strong>CERET</strong>— y más escuelas.</p>
+          <ul class="fact-list fact-list--two">
+            <li><span>Shell</span>Campamento en Diadema.</li>
+            <li><span>Astra</span>Campamento en Kilómetro 20.</li>
+            <li><span>Ferrocarrilera</span>Compañía Ferrocarrilera Patagónica.</li>
+            <li><span>Cines</span>El viejo cine de Kilómetro 8.</li>
+            <li><span>Chalet Huergo</span>Patrimonio histórico de la ciudad.</li>
+            <li><span>YPF</span>Privatizada en los 90; luego volvió al Estado.</li>
+          </ul>
+          <p>En el siglo XXI el petróleo sigue siendo la principal fuerza económica de Comodoro. Su potencial se refleja en las frecuencias aéreas, los índices de consumo y la llegada de inmigrantes que buscan un mejor porvenir.</p>
+          <details class="doc">
+            <summary>Documento · La comunidad alrededor del pozo</summary>
+            <div class="doc__body">
+              <p>El viejo cine de Kilómetro 8, construido por la Compañía Ferrocarrilera Patagónica, es uno de los emblemas que dejó el petróleo y su vínculo con la comunidad. El Chalet Huergo, construido en 1919, fue declarado Monumento Nacional Histórico.</p>
+            </div>
+          </details>
+        </div>
+        <figure class="cinema">
+          <div class="cinema__frame">
+            <img src="./assets/photos/cine-km8.jpg" width="1229" height="720" alt="Fachada del viejo cine de Kilómetro 8, con marquesina y puertas de acceso, en blanco y negro." />
+          </div>
+          <div class="cinema__beam" aria-hidden="true"></div>
+          <figcaption>El viejo cine de Kilómetro 8, construido por la Compañía Ferrocarrilera Patagónica. Archivo: ADNSUR.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 08 · EPÍLOGO -->
+    <section class="act act--epilogue" id="act-8" data-act="8" data-year="HOY" data-label="Explorar" style="--act-h: 150vh">
+      <div class="epilogue">
+        <div class="epilogue__copy">
+          <p class="eyebrow"><span class="eyebrow__brand">Epílogo</span> A más de 100 años</p>
+          <h2 class="epilogue__title">El petróleo sigue siendo la principal fuerza económica de Comodoro.</h2>
+          <p class="epilogue__lede">Aquel pozo que buscaba agua encontró kerosene. Fuchs y Beghin lo confirmaron a 535 metros, en Kilómetro 3, una mañana de diciembre de 1907. La historia de la ciudad ya no pudo contarse sin el oro negro.</p>
+          <div class="epilogue__actions">
+            <button class="btn btn--primary" id="reset-view" type="button">Volver al inicio</button>
+            <a class="btn btn--ghost" href="../artifact/">Ver la línea de tiempo</a>
+            <a class="btn btn--ghost" href="https://www.adnsur.com.ar/sociedad/comodoro-rivadavia--la-ciudad-donde-se-descubrio-el-petroleo-y-nacio-la-historica-ypf_a5fd5a66e1ff12e43bc98791d" target="_blank" rel="noopener">Leer la nota original</a>
+          </div>
+          <p class="epilogue__hint">Arrastrá el fondo para explorar el castillete.</p>
+        </div>
+        <div class="epilogue__credits">
+          <p class="credits__label">Fuente y créditos</p>
+          <p>Nota: “Comodoro Rivadavia, la ciudad donde se descubrió el petróleo y nació la histórica YPF”, ADNSUR, 13 de diciembre de 2020.</p>
+          <p>Fotografías: ADNSUR / archivo; “Medio Siglo del Petróleo Argentino”. El castillete 3D es una recreación visual, no una reconstrucción histórica.</p>
+          <p>Diseño y desarrollo: documento interactivo basado en la nota y en el artifact “Del pozo de agua al oro negro”.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="index-dialog" id="index-dialog" aria-labelledby="index-title">
+    <div class="index-dialog__head">
+      <div>
+        <p class="index-dialog__kicker">Recorrido</p>
+        <h2 id="index-title">Índice</h2>
+      </div>
+      <button class="btn btn--ghost" id="index-close" type="button">Cerrar</button>
+    </div>
+    <ol class="index-dialog__list">
+      <li><a href="#act-0" data-index-link><span>00</span><strong>El día</strong><em>1907</em></a></li>
+      <li><a href="#act-1" data-index-link><span>01</span><strong>Buscaban agua</strong><em>1903–1906</em></a></li>
+      <li><a href="#act-2" data-index-link><span>02</span><strong>El pozo 2</strong><em>1907</em></a></li>
+      <li><a href="#act-3" data-index-link><span>03</span><strong>Los tres días</strong><em>11–13 dic 1907</em></a></li>
+      <li><a href="#act-4" data-index-link><span>04</span><strong>El Estado</strong><em>1910–1919</em></a></li>
+      <li><a href="#act-5" data-index-link><span>05</span><strong>Nace YPF</strong><em>1922</em></a></li>
+      <li><a href="#act-6" data-index-link><span>06</span><strong>La era Mosconi</strong><em>1923–1930</em></a></li>
+      <li><a href="#act-7" data-index-link><span>07</span><strong>La huella</strong><em>1930–presente</em></a></li>
+      <li><a href="#act-8" data-index-link><span>08</span><strong>Explorar</strong><em>Epílogo</em></a></li>
+    </ol>
+  </dialog>
+
+  <noscript>
+    <div class="noscript">
+      <p>Esta experiencia necesita JavaScript para la escena 3D y el scroll animado. Podés leer la historia completa en la <a href="https://www.adnsur.com.ar/sociedad/comodoro-rivadavia--la-ciudad-donde-se-descubrio-el-petroleo-y-nacio-la-historica-ypf_a5fd5a66e1ff12e43bc98791d">nota original de ADNSUR</a>.</p>
+    </div>
+  </noscript>
+
+  <div class="scene-error" id="scene-error" hidden>
+    <p>No se pudo iniciar la escena 3D. La historia y las imágenes siguen disponibles.</p>
+  </div>
+</body>
+</html>

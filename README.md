@@ -1,36 +1,56 @@
-# El castillete
+# Del pozo de agua al oro negro
 
-Visor 3D de un castillete minero de madera, modelado proceduralmente con
-Three.js. Sin textos ni etapas: la estructura sobre su paisaje, con órbita y
-zoom.
+Sitio interactivo sobre el descubrimiento del petróleo en Comodoro Rivadavia y
+el nacimiento de YPF (1903–1923), basado en la nota de ADNSUR del 13 de
+diciembre de 2020.
 
-## Ejecutar
+**Sitio publicado:** <https://juancruzc97.github.io/media-party-2026/>
+
+El proyecto propone dos recorridos por la misma historia:
+
+- **Exploración visual** (`experiencia/`): scrollytelling de ocho actos y un
+  epílogo, con una escena 3D del castillete y el paisaje patagónico, fotografías
+  de archivo, visualizaciones y modo cine.
+- **Línea de tiempo** (`artifact/`): documento cronológico autocontenido con
+  fechas, cifras, nombres y citas de la nota original.
+
+## Estructura
+
+```
+index.html                  portada del proyecto
+experiencia/
+  index.html                scrollytelling 3D
+  src/                      escena, historia, capítulos y estilos
+  assets/                   fotografías y tipografías
+  vendor/                   Three.js y OrbitControls
+  torre/                    módulos legacy sin uso en la app actual
+artifact/
+  index.html                línea de tiempo standalone
+PLAN.md                     plan de contenidos y arquitectura
+.nojekyll                   desactiva el procesamiento de Jekyll en Pages
+```
+
+## Desarrollo local
+
+Cualquier servidor estático sirve; no hay build ni dependencias que instalar.
 
 ```bash
-cd media-party-2026
 python3 -m http.server 4173
 ```
 
-Abrir <http://localhost:4173>.
+Abrir <http://localhost:4173/> para la portada, o directamente:
 
-## Interacción
+- <http://localhost:4173/experiencia/>
+- <http://localhost:4173/artifact/>
 
-- Arrastrar para girar alrededor del castillete.
-- Rueda del ratón o pellizco táctil para acercar / alejar.
+## GitHub Pages
 
-## Archivos
-
-```
-index.html              canvas a pantalla completa
-src/main.js             arranque y render loop
-src/scene.js            cámara, órbita, luces y paisaje atmosférico
-src/structure.js        castillete, terreno, colinas, valla y polvo
-src/style.css           cielo, viñeta y fade-in
-vendor/three.module.js
-vendor/OrbitControls.js
-```
+El sitio se publica desde la rama `main`, en la raíz del repositorio
+(Settings → Pages → Deploy from a branch → `main` / `/`). No requiere acciones
+ni compilación: los archivos se sirven tal como están.
 
 ## Créditos
 
-Referencia visual: castillete minero de madera. Demo creada con la skill
-`web3d-integration-patterns`.
+- Fuente periodística: [ADNSUR, 13/12/2020](https://www.adnsur.com.ar/sociedad/comodoro-rivadavia--la-ciudad-donde-se-descubrio-el-petroleo-y-nacio-la-historica-ypf_a5fd5a66e1ff12e43bc98791d).
+- Escena 3D: Three.js, modelado procedural.
+- Tipografías: Fraunces e IBM Plex Sans.
