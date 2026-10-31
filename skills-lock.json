@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "skills": {
+    "git-worktrees": {
+      "source": "git@github.com:JuanCruzC97/skills.git",
+      "sourceUrl": "git@github.com:JuanCruzC97/skills.git",
+      "sourceType": "git",
+      "skillPath": "skills/git-worktrees/SKILL.md",
+      "computedHash": "c618f923c20b52aebad7ddf17f88d0b4f2a4521adf9b1ebfdacfc2ae4bc2fc31"
+    },
+    "web3d-integration-patterns": {
+      "source": "freshtechbro/claudedesignskills",
+      "ref": "main",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/web3d-integration-patterns/SKILL.md",
+      "computedHash": "e411bbc6e7f7f928b6fd2f209530446cf74dfa1ff9cfd6adb17ba37317d89e9a"
+    }
+  }
+}

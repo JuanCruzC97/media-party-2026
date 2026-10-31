@@ -1,0 +1,55 @@
+:root {
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(90% 55% at 50% 100%, rgba(196, 186, 165, 0.55), transparent 70%),
+    linear-gradient(180deg, #cfd8db 0%, #e3e3da 46%, #eee9dc 72%, #d9d2c2 100%);
+}
+
+#scene {
+  position: fixed;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: grab;
+  touch-action: none;
+  transition: opacity 1.4s ease;
+}
+
+#scene:active {
+  cursor: grabbing;
+}
+
+body.is-ready #scene {
+  opacity: 1;
+}
+
+.vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(115% 85% at 50% 42%, transparent 52%, rgba(48, 40, 27, 0.18) 100%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 22%, transparent 78%, rgba(75, 64, 45, 0.12));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #scene {
+    transition: none;
+  }
+}

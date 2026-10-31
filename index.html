@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Castillete minero de madera. Visor 3D con zoom." />
+  <title>El castillete</title>
+
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="./src/style.css" />
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "./vendor/three.module.js"
+      }
+    }
+  </script>
+  <script type="module" src="./src/main.js"></script>
+</head>
+<body>
+  <canvas id="scene" aria-label="Castillete minero de madera. Usa la rueda del ratón o pellizca para acercar y alejar."></canvas>
+  <div class="vignette" aria-hidden="true"></div>
+</body>
+</html>
