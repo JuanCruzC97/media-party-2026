@@ -1,0 +1,1195 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Del pozo de agua al oro negro · Comodoro Rivadavia y YPF</title>
+<style>
+  :root{
+    --paper:#f7f2e7;
+    --paper-2:#efe7d7;
+    --card:#fbf7ee;
+    --ink:#211e19;
+    --body:#403b32;
+    --muted:#6e6557;
+    --line:#d8cdb9;
+    --petrol:#12312c;
+    --petrol-2:#1b463f;
+    --ochre:#a4672a;
+    --ochre-light:#d8b27a;
+    --cream:#f4eddd;
+    --serif:"Iowan Old Style","Palatino Linotype","Book Antiqua",Palatino,Georgia,serif;
+    --sans:"Helvetica Neue",Helvetica,Arial,system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background-color:#e8e0d1;
+    background-image:
+      radial-gradient(circle at 18% 0%, #f2ebdd 0, transparent 42%),
+      radial-gradient(circle at 100% 28%, #ded3c0 0, transparent 38%);
+    color:var(--body);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .sheet{
+    max-width:1080px;
+    margin:34px auto;
+    background:var(--paper);
+    border:1px solid #d9cfbc;
+    box-shadow:0 30px 80px rgba(38,30,18,.14);
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    padding:2.2rem clamp(1.5rem,5vw,3.4rem) clamp(2.4rem,5vw,3.6rem);
+    color:var(--cream);
+    background:
+      radial-gradient(circle at 88% 8%, rgba(216,178,122,.20), transparent 38%),
+      linear-gradient(135deg,#0b201c 0%,#12312c 52%,#1b4a40 100%);
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    inset:14px;
+    border:1px solid rgba(244,237,221,.16);
+    pointer-events:none;
+  }
+  .masthead{
+    position:relative;
+    display:flex;
+    align-items:baseline;
+    gap:.65rem;
+    padding-bottom:1.1rem;
+    border-bottom:1px solid rgba(244,237,221,.22);
+  }
+  .brand{
+    font-size:.78rem;
+    font-weight:700;
+    letter-spacing:.24em;
+    color:var(--cream);
+  }
+  .brand-sub{
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:.92rem;
+    color:var(--ochre-light);
+  }
+  .mast-date{
+    margin-left:auto;
+    font-size:.66rem;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:#c9bfa9;
+  }
+  .hero-grid{
+    position:relative;
+    display:grid;
+    grid-template-columns:minmax(0,1.55fr) minmax(150px,.45fr);
+    gap:2rem;
+    align-items:end;
+    padding-top:clamp(1.8rem,4vw,3rem);
+  }
+  .kicker{
+    margin:0 0 1.1rem;
+    font-size:.66rem;
+    font-weight:600;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--ochre-light);
+  }
+  h1{
+    margin:0;
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:clamp(2.7rem,6.4vw,4.8rem);
+    line-height:.96;
+    letter-spacing:-.025em;
+    color:#fbf5e6;
+  }
+  .deck{
+    max-width:47ch;
+    margin:1.4rem 0 0;
+    font-size:1rem;
+    line-height:1.65;
+    color:#dcd3bf;
+  }
+  .hero-meta{
+    list-style:none;
+    margin:2rem 0 0;
+    padding:0;
+    max-width:520px;
+  }
+  .hero-meta li{
+    display:flex;
+    gap:.9rem;
+    padding:.5rem 0;
+    border-top:1px solid rgba(244,237,221,.16);
+    font-size:.76rem;
+    color:#d4cab6;
+  }
+  .hero-meta span{
+    flex:0 0 76px;
+    font-size:.6rem;
+    font-weight:700;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:#c49c62;
+    padding-top:.12rem;
+  }
+  .hero-art{
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:flex-end;
+    min-height:220px;
+    color:var(--ochre-light);
+  }
+  .hero-art::before{
+    content:"";
+    position:absolute;
+    right:6%;
+    top:4%;
+    width:160px;
+    height:160px;
+    border-radius:50%;
+    border:1px solid rgba(216,178,122,.25);
+    box-shadow:0 0 0 26px rgba(216,178,122,.05), 0 0 0 52px rgba(216,178,122,.03);
+  }
+  .hero-art svg{
+    position:relative;
+    width:150px;
+    height:auto;
+    opacity:.75;
+  }
+
+  /* ---------- SECTIONS ---------- */
+  .section{
+    padding:clamp(2rem,4.5vw,3.2rem) clamp(1.5rem,5vw,3.4rem);
+    border-top:1px solid var(--line);
+  }
+  .sec-head{
+    display:flex;
+    align-items:baseline;
+    gap:1rem;
+    margin-bottom:1.5rem;
+  }
+  .sec-num{
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:1rem;
+    color:var(--ochre);
+  }
+  .sec-title{
+    margin:0;
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:clamp(1.45rem,2.7vw,1.95rem);
+    letter-spacing:-.015em;
+    color:var(--ink);
+  }
+  .sec-rule{
+    flex:1;
+    height:1px;
+    background:var(--line);
+    align-self:center;
+  }
+  .lead{
+    max-width:66ch;
+    margin:-.35rem 0 1.8rem;
+    font-size:.95rem;
+    line-height:1.7;
+    color:var(--muted);
+  }
+  .lead strong{color:var(--ink);font-weight:600;}
+
+  /* ---------- ESSENTIALS ---------- */
+  .essentials{
+    list-style:none;
+    counter-reset:ess;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0 2.8rem;
+    margin:0;
+    padding:0;
+  }
+  .essentials li{
+    counter-increment:ess;
+    position:relative;
+    padding:1.15rem 0 1.2rem 2.9rem;
+    border-top:1px solid var(--line);
+  }
+  .essentials li:first-child{
+    grid-column:1 / -1;
+    padding-right:2rem;
+  }
+  .essentials li::before{
+    content:"0" counter(ess);
+    position:absolute;
+    left:0;
+    top:1.02rem;
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:1.1rem;
+    color:var(--ochre);
+  }
+  .essentials h3{
+    margin:0 0 .35rem;
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:1.05rem;
+    line-height:1.3;
+    color:var(--ink);
+  }
+  .essentials p{
+    margin:0;
+    font-size:.87rem;
+    line-height:1.62;
+    color:#5b5347;
+  }
+
+  /* ---------- STATS ---------- */
+  .stats-band{
+    background:var(--paper-2);
+    padding-top:2.2rem;
+    padding-bottom:2.4rem;
+  }
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .stat{
+    background:var(--card);
+    padding:1.35rem 1.15rem 1.4rem;
+  }
+  .stat .num{
+    font-family:var(--serif);
+    font-size:clamp(1.75rem,3.3vw,2.5rem);
+    line-height:1;
+    color:var(--petrol);
+    letter-spacing:-.02em;
+    white-space:nowrap;
+  }
+  .stat .num small{
+    font-size:.48em;
+    letter-spacing:0;
+    color:var(--ochre);
+  }
+  .stat .lab{
+    margin-top:.65rem;
+    font-size:.67rem;
+    line-height:1.45;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+
+  /* ---------- TIMELINE ---------- */
+  .timeline{
+    position:relative;
+    margin-top:.6rem;
+  }
+  .timeline::before{
+    content:"";
+    position:absolute;
+    left:118px;
+    top:10px;
+    bottom:14px;
+    width:1px;
+    background:var(--line);
+  }
+  .stage{
+    margin-top:2.5rem;
+  }
+  .stage:first-child{margin-top:0;}
+  .stage-head{
+    display:flex;
+    align-items:center;
+    gap:.9rem;
+    margin:0 0 1.1rem;
+  }
+  .stage-num{
+    font-size:.62rem;
+    font-weight:700;
+    letter-spacing:.12em;
+    color:var(--ochre);
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:.34rem .55rem;
+    background:#fffdf7;
+  }
+  .stage-title{
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:.17em;
+    text-transform:uppercase;
+    color:var(--petrol);
+    white-space:nowrap;
+  }
+  .stage-line{
+    flex:1;
+    height:1px;
+    background:var(--line);
+  }
+  .event{
+    position:relative;
+    display:grid;
+    grid-template-columns:118px minmax(0,1fr);
+    padding-bottom:1.55rem;
+  }
+  .event::before{
+    content:"";
+    position:absolute;
+    left:113px;
+    top:8px;
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:var(--ochre);
+    border:2px solid var(--paper);
+    box-shadow:0 0 0 1px var(--ochre);
+  }
+  .when{
+    padding-right:26px;
+    text-align:right;
+  }
+  .when .y{
+    display:block;
+    font-family:var(--serif);
+    font-size:1.12rem;
+    line-height:1.15;
+    color:var(--petrol);
+    letter-spacing:-.01em;
+  }
+  .when .d{
+    display:block;
+    margin-top:.22rem;
+    font-size:.62rem;
+    line-height:1.4;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .what{
+    padding-left:28px;
+    padding-top:.05rem;
+  }
+  .what h3{
+    margin:0 0 .38rem;
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:1.13rem;
+    line-height:1.32;
+    color:var(--ink);
+  }
+  .what p{
+    margin:0;
+    font-size:.89rem;
+    line-height:1.66;
+    color:#514a3f;
+  }
+  .what p + p{margin-top:.55rem;}
+  .tag{
+    display:inline-block;
+    margin-top:.6rem;
+    padding:.17rem .52rem;
+    border:1px solid var(--line);
+    border-radius:999px;
+    font-size:.58rem;
+    font-weight:700;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--ochre);
+  }
+  .event.key{padding-bottom:1.8rem;}
+  .event.key::before{
+    background:var(--ochre-light);
+    box-shadow:0 0 0 1px var(--ochre), 0 0 0 5px rgba(164,103,42,.12);
+  }
+  .event.key .what{
+    margin-left:20px;
+    padding:1.35rem 1.5rem 1.5rem;
+    background:var(--petrol);
+    border-radius:5px;
+    box-shadow:0 12px 30px rgba(18,49,44,.16);
+  }
+  .event.key .what h3{
+    color:#fbf4e3;
+    font-size:1.35rem;
+    margin-bottom:.45rem;
+  }
+  .event.key .what p{color:#d8d0bd;}
+  .event.key .what blockquote{
+    margin:1rem 0 0;
+    padding:.15rem 0 .15rem 1rem;
+    border-left:2px solid var(--ochre-light);
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:1.04rem;
+    line-height:1.5;
+    color:#f6e9cd;
+  }
+  .event.key .what cite{
+    display:block;
+    margin-top:.55rem;
+    font-family:var(--sans);
+    font-style:normal;
+    font-size:.6rem;
+    letter-spacing:.11em;
+    text-transform:uppercase;
+    color:#bdb4a0;
+  }
+
+  /* ---------- QUOTES ---------- */
+  .quotes-band{
+    border-top:0;
+    background:
+      radial-gradient(circle at 90% 0%, rgba(216,178,122,.13), transparent 35%),
+      linear-gradient(120deg,#0d221e,#12312c);
+    color:var(--cream);
+  }
+  .quotes-band .sec-title{color:#fbf4e3;}
+  .quotes-band .sec-num{color:var(--ochre-light);}
+  .quotes-band .sec-rule{background:rgba(244,237,221,.2);}
+  .quotes-band .lead{color:#c9c0ad;}
+  .quote-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1.6rem;
+  }
+  .quote{
+    border-top:1px solid rgba(244,237,221,.24);
+    padding-top:1rem;
+  }
+  .quote p{
+    margin:0;
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:1rem;
+    line-height:1.58;
+    color:#f1e8d5;
+  }
+  .quote cite{
+    display:block;
+    margin-top:.8rem;
+    font-family:var(--sans);
+    font-style:normal;
+    font-size:.6rem;
+    line-height:1.5;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:#b9a888;
+  }
+
+  /* ---------- PEOPLE ---------- */
+  .people{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(185px,1fr));
+    gap:1rem;
+  }
+  .person{
+    background:var(--card);
+    border:1px solid var(--line);
+    padding:1.2rem 1.15rem 1.3rem;
+  }
+  .mono{
+    display:grid;
+    place-items:center;
+    width:40px;
+    height:40px;
+    margin-bottom:.85rem;
+    border-radius:50%;
+    background:var(--petrol);
+    color:#f3ecdc;
+    font-family:var(--serif);
+    font-size:.82rem;
+    letter-spacing:.03em;
+  }
+  .person h3{
+    margin:0 0 .18rem;
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:1.04rem;
+    color:var(--ink);
+  }
+  .role{
+    margin:0 0 .55rem;
+    font-size:.57rem;
+    font-weight:700;
+    letter-spacing:.11em;
+    text-transform:uppercase;
+    color:var(--ochre);
+  }
+  .person p{
+    margin:0;
+    font-size:.82rem;
+    line-height:1.58;
+    color:#5b5347;
+  }
+
+  /* ---------- LEGACY ---------- */
+  .legacy{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:2.2rem;
+  }
+  .legacy h3{
+    margin:0 0 .7rem;
+    font-size:.65rem;
+    font-weight:700;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--petrol);
+    padding-bottom:.55rem;
+    border-bottom:1px solid var(--line);
+  }
+  .clean{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  .clean li{
+    position:relative;
+    padding:.55rem 0 .55rem 1.15rem;
+    border-bottom:1px dotted var(--line);
+    font-size:.86rem;
+    line-height:1.55;
+    color:#514a3f;
+  }
+  .clean li:last-child{border-bottom:0;}
+  .clean li::before{
+    content:"→";
+    position:absolute;
+    left:0;
+    top:.55rem;
+    font-size:.74rem;
+    color:var(--ochre);
+  }
+
+  /* ---------- TABLE ---------- */
+  .table-wrap{
+    overflow-x:auto;
+    border:1px solid var(--line);
+    background:var(--card);
+  }
+  table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:.86rem;
+  }
+  thead th{
+    padding:.7rem .9rem;
+    text-align:left;
+    font-size:.58rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--muted);
+    background:var(--paper-2);
+    border-bottom:1px solid var(--line);
+    white-space:nowrap;
+  }
+  tbody td{
+    padding:.68rem .9rem;
+    border-bottom:1px solid #e7ddcb;
+    vertical-align:top;
+    color:#4d463b;
+  }
+  tbody tr:last-child td{border-bottom:0;}
+  tbody td:first-child{
+    font-family:var(--serif);
+    color:var(--petrol);
+    white-space:nowrap;
+  }
+  td.value{
+    font-family:var(--serif);
+    font-size:.95rem;
+    color:var(--petrol);
+    white-space:nowrap;
+  }
+
+  /* ---------- SOURCE ---------- */
+  .source{
+    background:var(--paper-2);
+    border-left:3px solid var(--ochre);
+    padding:1.2rem 1.4rem;
+    font-size:.84rem;
+    line-height:1.65;
+    color:#524b40;
+  }
+  .source p{margin:0;}
+  .source p + p{margin-top:.65rem;}
+  .source a{
+    color:var(--petrol);
+    text-decoration:underline;
+    text-underline-offset:2px;
+    word-break:break-word;
+  }
+  .source .src-label{
+    display:block;
+    margin-bottom:.35rem;
+    font-size:.58rem;
+    font-weight:700;
+    letter-spacing:.13em;
+    text-transform:uppercase;
+    color:var(--ochre);
+  }
+
+  /* ---------- FOOTER ---------- */
+  .doc-footer{
+    display:flex;
+    justify-content:space-between;
+    gap:1rem;
+    padding:1.2rem clamp(1.5rem,5vw,3.4rem);
+    background:#0d221e;
+    color:#b9b09c;
+    font-size:.62rem;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+  }
+  .doc-footer span:last-child{text-align:right;}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:860px){
+    .sheet{margin:18px 12px;}
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-art{display:none;}
+    .essentials{grid-template-columns:1fr;}
+    .essentials li:first-child{padding-right:0;}
+    .stats{grid-template-columns:1fr 1fr;}
+    .quote-grid{grid-template-columns:1fr;}
+    .legacy{grid-template-columns:1fr;}
+  }
+  @media (max-width:640px){
+    body{font-size:15px;}
+    .sheet{margin:0;border-left:0;border-right:0;}
+    .mast-date{display:none;}
+    .hero::before{inset:8px;}
+    .hero-meta li{flex-direction:column;gap:.15rem;}
+    .hero-meta span{flex:none;}
+    .timeline::before{left:5px;}
+    .event{
+      display:block;
+      padding-left:26px;
+      padding-bottom:1.5rem;
+    }
+    .event::before{left:0;top:7px;}
+    .when{
+      display:flex;
+      align-items:baseline;
+      gap:.55rem;
+      padding:0 0 .3rem;
+      text-align:left;
+    }
+    .when .y{font-size:1.05rem;}
+    .when .d{margin-top:0;}
+    .what{padding-left:0;}
+    .event.key .what{margin-left:0;padding:1.15rem 1.15rem 1.3rem;}
+    .stage-head{gap:.6rem;}
+    .stage-title{white-space:normal;line-height:1.5;}
+    .stat .num{white-space:normal;}
+    .doc-footer{flex-direction:column;gap:.35rem;}
+    .doc-footer span:last-child{text-align:left;}
+  }
+
+  @media print{
+    @page{margin:14mm;}
+    body{background:#fff;}
+    .sheet{max-width:none;margin:0;border:0;box-shadow:none;}
+    .hero,.quotes-band,.event.key .what,.mono,.stat .num,.doc-footer{
+      -webkit-print-color-adjust:exact;
+      print-color-adjust:exact;
+    }
+    .section{padding:2rem 2.2rem;}
+    .event,.person,.quote,.stat,.source{break-inside:avoid;}
+    .hero{padding:2.2rem;}
+  }
+</style>
+</head>
+<body>
+<main class="sheet">
+
+  <header class="hero">
+    <div class="masthead">
+      <span class="brand">ADNSUR</span>
+      <span class="brand-sub">Efemérides</span>
+      <span class="mast-date">13 · 12 · 2020</span>
+    </div>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="kicker">Comodoro Rivadavia · 1903 – siglo XXI</p>
+        <h1>Del pozo de agua<br>al oro negro</h1>
+        <p class="deck">La ciudad buscaba agua potable y encontró petróleo. Esta línea de tiempo reconstruye el hallazgo de 1907, el nacimiento de YPF y los datos que explican por qué Comodoro marcó la historia industrial del país.</p>
+        <ul class="hero-meta">
+          <li><span>Tema</span>Descubrimiento del petróleo y nacimiento de YPF</li>
+          <li><span>Escenario</span>Kilómetro 3, Comodoro Rivadavia</li>
+          <li><span>Fuente</span>ADNSUR · 13 de diciembre de 2020</li>
+        </ul>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 160 230" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+          <path d="M80 10 L40 205 M80 10 L120 205"/>
+          <path d="M54 68 L106 68 M48 106 L112 106 M43 145 L117 145 M38 184 L122 184"/>
+          <path d="M80 10 L80 205" opacity=".3"/>
+          <path d="M54 68 L106 106 M106 68 L54 106 M48 106 L112 145 M112 106 L48 145 M43 145 L117 184 M117 145 L43 184" opacity=".35"/>
+          <path d="M24 205 H136"/>
+          <path d="M62 205 L68 220 M98 205 L92 220 M52 220 H108" opacity=".55"/>
+          <circle cx="80" cy="10" r="3" fill="currentColor" stroke="none"/>
+        </svg>
+      </div>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2 class="sec-title">Lo esencial en cinco puntos</h2>
+      <span class="sec-rule"></span>
+    </div>
+    <ol class="essentials">
+      <li>
+        <h3>La perforación no buscaba petróleo</h3>
+        <p>Comodoro Rivadavia había nacido como un pequeño poblado fundado para tener una salida al mar en la zona. La Dirección de Minas, Geología e Hidrología del Gobierno Nacional envió una máquina para encontrar agua potable: en 1903 apenas alcanzó los 107 metros.</p>
+      </li>
+      <li>
+        <h3>El 13 de diciembre de 1907 cambió la historia</h3>
+        <p>Cerca de las 8 de la mañana, a 535 metros de profundidad, en lo que hoy es Kilómetro 3, Humberto Beghin confirmó la presencia de kerosene. Desde entonces se celebra el Día del Descubrimiento del Petróleo.</p>
+      </li>
+      <li>
+        <h3>Los indicios llegaron dos días antes</h3>
+        <p>El 11 de diciembre, Fuchs y Beghin percibieron un fuerte olor a gas de kerosene y lo comunicaron por telégrafo. Julio Krause ordenó suspender la perforación y vaciar el agua para comprobar.</p>
+      </li>
+      <li>
+        <h3>El Estado organizó la explotación</h3>
+        <p>En 1910 se creó la Dirección General de Explotación de Petróleo, presidida por Luis Huergo. En 1922 nació YPF, con el general Mosconi como primer director.</p>
+      </li>
+      <li>
+        <h3>Comodoro explicaba el país</h3>
+        <p>En 1922 concentraba 130 de los 137 pozos del país. El crecimiento de YPF trajo hospitales, escuelas, campamentos y cines; la petrolera fue privatizada en los años 90 y luego volvió a manos del Estado.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="section stats-band">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2 class="sec-title">El hallazgo en cifras</h2>
+      <span class="sec-rule"></span>
+    </div>
+    <div class="stats">
+      <div class="stat">
+        <div class="num">535 <small>m</small></div>
+        <div class="lab">Profundidad del pozo descubridor, Kilómetro 3, 1907</div>
+      </div>
+      <div class="stat">
+        <div class="num">130<small>/137</small></div>
+        <div class="lab">Pozos del país que estaban en Comodoro en 1922</div>
+      </div>
+      <div class="stat">
+        <div class="num">25.000 <small>HP</small></div>
+        <div class="lab">Potencia de la usina eléctrica habilitada en 1927</div>
+      </div>
+      <div class="stat">
+        <div class="num">1.170.300 <small>m³</small></div>
+        <div class="lab">Producción del yacimiento en 1930</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2 class="sec-title">Línea de tiempo</h2>
+      <span class="sec-rule"></span>
+    </div>
+    <p class="lead">De la primera perforación en busca de agua al descubrimiento, la organización estatal y la consolidación de YPF: <strong>cinco etapas para ordenar los hechos</strong>.</p>
+
+    <div class="timeline">
+
+      <div class="stage">
+        <div class="stage-head">
+          <span class="stage-num">01</span>
+          <span class="stage-title">La búsqueda de agua · 1903–1907</span>
+          <span class="stage-line"></span>
+        </div>
+
+        <article class="event">
+          <div class="when"><span class="y">1903</span><span class="d">Primer intento</span></div>
+          <div class="what">
+            <h3>La perforación que buscaba agua</h3>
+            <p>La Dirección de Minas, Geología e Hidrología del Gobierno Nacional envió una máquina perforadora al poblado. La excavación llegó a 107 metros de profundidad y no encontró agua.</p>
+            <span class="tag">Agua potable</span>
+          </div>
+        </article>
+
+        <article class="event">
+          <div class="when"><span class="y">1906</span><span class="d">14 de diciembre</span></div>
+          <div class="what">
+            <h3>Llega la perforadora “Wenceslao Escalante”</h3>
+            <p>Se reactivaron las gestiones para traer otra máquina. Era una de las cuatro del sistema Fauck y Cía. adquiridas en Viena y fue descargada un 14 de diciembre.</p>
+          </div>
+        </article>
+
+        <article class="event">
+          <div class="when"><span class="y">1907</span><span class="d">24 de marzo</span></div>
+          <div class="what">
+            <h3>José Fuchs queda a cargo</h3>
+            <p>La máquina comenzó a buscar agua. El técnico en perforación contratado en Europa para la atención del equipo estaba al frente de los trabajos.</p>
+          </div>
+        </article>
+
+        <article class="event">
+          <div class="when"><span class="y">1907</span><span class="d">Mediados de año</span></div>
+          <div class="what">
+            <h3>Beghin ordena el campamento</h3>
+            <p>Problemas con el personal interrumpieron las tareas. Julio Krause, jefe de la Sección Hidrología, envió a Humberto Beghin para ordenar el campamento; el auxiliar mecánico terminó a cargo de la perforación.</p>
+          </div>
+        </article>
+
+        <article class="event">
+          <div class="when"><span class="y">1907</span><span class="d">Noviembre</span></div>
+          <div class="what">
+            <h3>500 metros y una decisión clave</h3>
+            <p>El pozo número 2 alcanzó los 500 metros. Por telégrafo, Krause consultó a Fuchs si era posible continuar con la excavación; el especialista alemán dio el ok y las tareas siguieron.</p>
+            <span class="tag">La autorización que habilitó el hallazgo</span>
+          </div>
+        </article>
+      </div>
+
+      <div class="stage">
+        <div class="stage-head">
+          <span class="stage-num">02</span>
+          <span class="stage-title">El descubrimiento · diciembre de 1907</span>
+          <span class="stage-line"></span>
+        </div>
+
+        <article class="event">
+          <div class="when"><span class="y">1907</span><span class="d">11 de diciembre</span></div>
+          <div class="what">
+            <h3>Olor a kerosene</h3>
+            <p>En la mañana, Fuchs y Beghin percibieron un fuerte olor a gas de kerosene y otros indicios que no eran agua. Rápidamente comunicaron la sospecha a Buenos Aires.</p>
+            <span class="tag">Telegrama a Buenos Aires</span>
+          </div>
+        </article>
+
+        <article class="event">
+          <div class="when"><span class="y">1907</span><span class="d">12 de diciembre</span></div>
+          <div class="what">
+            <h3>La orden de verificar</h3>
+            <p>Llegó la respuesta de Krause: suspender los trabajos de perforación y sacar toda el agua del interior para comprobar si habían encontrado petróleo.</p>
+          </div>
+        </article>
+
+        <article class="event key">
+          <div class="when"><span class="y">1907</span><span class="d">13 de diciembre · 8:00</span></div>
+          <div class="what">
+            <h3>“¡Encontramos kerosene!”</h3>
+            <p>Beghin se acercó a la canaleta, hizo una cuchara con las manos y confirmó el hallazgo. La perforación estaba a 535 metros de profundidad. El descubrimiento se informó al Gobierno como “kerosene de la mejor calidad”.</p>
+            <blockquote>“¡Gran Dios! ¡Encontramos kerosene! Es del Estado, vamos a comunicarlo.”<cite>Humberto Beghin · Kilómetro 3, 13 de diciembre de 1907</cite></blockquote>
+          </div>
+        </article>
+      </div>
+
+      <div class="stage">
+        <div class="stage-head">
+          <span class="stage-num">03</span>
+          <span class="stage-title">La organización estatal · 1910–1922</span>
+          <span class="stage-line"></span>
+        </div>
+
+        <article class="event">
+          <div class="when"><span class="y">1910</span><span class="d">Primer marco estatal</span></div>
+          <div class="what">
+            <h3>Nace la Dirección General de Explotación de Petróleo</h3>
+            <p>Presidida por el ingeniero Luis Huergo, dependía de la Dirección de Minas, Geología e Hidrología del Ministerio de Agricultura. Realizó las primeras gestiones por un puerto, construyó un muelle y adquirió otro en Caleta Córdova.</p>
+            <p>También dio los primeros pasos en materia social: construcción de casas, una proveeduría y otros servicios para contener al trabajador en un pueblo que recién crecía.</p>
+            <span class="tag">Estado y explotación</span>
+          </div>
+        </article>
+
+        <article class="event">
+          <div class="when"><span class="y">1919</span><span class="d">Patrimonio</span></div>
+          <div class="what">
+            <h3>Chalet Huergo</h3>
+            <p>Se construyó el edificio que luego fue declarado Monumento Nacional Histórico y que albergó a presidentes y figuras internacionales.</p>
+          </div>
+        </article>
+
+        <article class="event">
+          <div class="when"><span class="y">1922</span><span class="d">Nace YPF</span></div>
+          <div class="what">
+            <h3>Mosconi y un plan de cuatro años</h3>
+            <p>Se creó Yacimientos Petrolíferos Fiscales. El general Mosconi fue su primer director e impulsó un plan de ordenamiento y crecimiento que incluía la puesta en marcha de la destilería de Ensenada.</p>
+            <span class="tag">Yacimientos Petrolíferos Fiscales</span>
+          </div>
+        </article>
+
+        <article class="event">
+          <div class="when"><span class="y">1922</span><span class="d">22 feb · 20 jun</span></div>
+          <div class="what">
+            <h3>Los primeros surtidores</h3>
+            <p>Mosconi habilitó en Buenos Aires el primer surtidor de kerosene, el 22 de febrero, y el primero de nafta, el 20 de junio, para aumentar la demanda de crudo destinada a combustibles.</p>
+          </div>
+        </article>
+
+        <article class="event">
+          <div class="when"><span class="y">1922</span><span class="d">Contexto</span></div>
+          <div class="what">
+            <h3>Un país que consumía petróleo</h3>
+            <p>Argentina era el mayor consumidor de petróleo de América del Sur, por delante de Chile, Brasil y Venezuela, y el segundo productor detrás de Venezuela. Comodoro tenía 130 de los 137 pozos del país y en la ciudad había 60 toneladas de petróleo almacenadas.</p>
+            <span class="tag">130 de 137 pozos</span>
+          </div>
+        </article>
+      </div>
+
+      <div class="stage">
+        <div class="stage-head">
+          <span class="stage-num">04</span>
+          <span class="stage-title">La era Mosconi · 1922–1930</span>
+          <span class="stage-line"></span>
+        </div>
+
+        <article class="event">
+          <div class="when"><span class="y">1923</span><span class="d">Producción</span></div>
+          <div class="what">
+            <h3>450.328 metros cúbicos</h3>
+            <p>La producción del yacimiento se repartió entre YPF, con 343.889 m³ y 89 pozos, y las empresas privadas. Los datos provienen del libro “Cincuentenario de YPF”, que narra su historia entre 1922 y 1972.</p>
+          </div>
+        </article>
+
+        <article class="event">
+          <div class="when"><span class="y">1927</span><span class="d">1 de enero</span></div>
+          <div class="what">
+            <h3>La usina eléctrica central</h3>
+            <p>Se habilitó con una capacidad de 25.000 HP de potencia, una de las grandes realizaciones de Mosconi.</p>
+            <span class="tag">Infraestructura</span>
+          </div>
+        </article>
+
+        <article class="event">
+          <div class="when"><span class="y">1930</span><span class="d">Septiembre</span></div>
+          <div class="what">
+            <h3>Producción récord y fin de una etapa</h3>
+            <p>La producción había aumentado a 1.170.300 m³, de los cuales 721.592 eran de la compañía estatal. La gestión de Mosconi se extendió hasta septiembre de 1930.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="stage">
+        <div class="stage-head">
+          <span class="stage-num">05</span>
+          <span class="stage-title">Después del hallazgo · 1990s–siglo XXI</span>
+          <span class="stage-line"></span>
+        </div>
+
+        <article class="event">
+          <div class="when"><span class="y">1990s</span><span class="d">Privatización</span></div>
+          <div class="what">
+            <h3>YPF pasa al sector privado</h3>
+            <p>La petrolera estatal fue privatizada en la década del 90 y, según consigna la nota, más tarde volvió a manos del Estado. El texto no precisa la fecha de ese retorno.</p>
+          </div>
+        </article>
+
+        <article class="event">
+          <div class="when"><span class="y">Siglo XXI</span><span class="d">Legado</span></div>
+          <div class="what">
+            <h3>El oro negro sigue explicando la ciudad</h3>
+            <p>A más de 100 años del descubrimiento, el petróleo continúa siendo la principal fuerza económica de Comodoro Rivadavia. Su potencial se refleja en la cantidad de frecuencias aéreas, los índices de consumo y la llegada de inmigrantes que buscan un mejor porvenir.</p>
+            <span class="tag">Presente</span>
+          </div>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section quotes-band">
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <h2 class="sec-title">En sus palabras</h2>
+      <span class="sec-rule"></span>
+    </div>
+    <p class="lead">La historia también se cuenta en los mensajes que se cruzaron durante aquellos tres días de diciembre de 1907.</p>
+    <div class="quote-grid">
+      <div class="quote">
+        <p>“Comunícole señor jefe que se cree haber dado con una napa de kerosene. Aumento en la inyección no se nota aún, pero sube toda mezclada con globitos y se siente olor a gas de kerosene. Irá cada dos horas el estado de la perforación. Se esperan instrucciones. Se continúa perforando.”</p>
+        <cite>Fuchs y Beghin a Krause · 11 de diciembre de 1907</cite>
+      </div>
+      <div class="quote">
+        <p>“Para comprobar si encontró petróleo, suspenda trabajos de perforación y saque toda el agua del interior.”</p>
+        <cite>Julio Krause a Beghin · 12 de diciembre de 1907</cite>
+      </div>
+      <div class="quote">
+        <p>“Garantizamos que es kerosene de la mejor calidad. Todo en buen estado.”</p>
+        <cite>Beghin y Fuchs al Gobierno · 13 de diciembre de 1907</cite>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="sec-head">
+      <span class="sec-num">05</span>
+      <h2 class="sec-title">Los protagonistas</h2>
+      <span class="sec-rule"></span>
+    </div>
+    <p class="lead">Cinco nombres que atraviesan el hallazgo y la construcción de la industria.</p>
+    <div class="people">
+      <article class="person">
+        <div class="mono">JF</div>
+        <h3>José Fuchs</h3>
+        <p class="role">Técnico en perforación</p>
+        <p>Contratado en Europa para operar el equipo, estaba a cargo de los trabajos cuando comenzó la búsqueda de agua.</p>
+      </article>
+      <article class="person">
+        <div class="mono">HB</div>
+        <h3>Humberto Beghin</h3>
+        <p class="role">Auxiliar mecánico</p>
+        <p>Llegó a ordenar el campamento a mediados de 1907 y quedó al frente de la perforación. Confirmó el hallazgo el 13 de diciembre.</p>
+      </article>
+      <article class="person">
+        <div class="mono">JK</div>
+        <h3>Julio Krause</h3>
+        <p class="role">Jefe de la Sección Hidrología</p>
+        <p>Envió a Beghin, autorizó seguir perforando a los 500 metros y ordenó verificar el hallazgo.</p>
+      </article>
+      <article class="person">
+        <div class="mono">LH</div>
+        <h3>Luis Huergo</h3>
+        <p class="role">Ingeniero</p>
+        <p>Presidió la Dirección General de Explotación de Petróleo creada en 1910, el primer marco estatal para el recurso.</p>
+      </article>
+      <article class="person">
+        <div class="mono">GM</div>
+        <h3>General Mosconi</h3>
+        <p class="role">Primer director de YPF</p>
+        <p>Impulsó la destilería de Ensenada, los primeros surtidores y la usina eléctrica. Gestionó hasta septiembre de 1930.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="sec-head">
+      <span class="sec-num">06</span>
+      <h2 class="sec-title">La huella en la ciudad</h2>
+      <span class="sec-rule"></span>
+    </div>
+    <p class="lead">El petróleo no solo cambió la economía: dejó barrios, servicios y edificios que todavía forman parte de la identidad de Comodoro.</p>
+    <div class="legacy">
+      <div>
+        <h3>Obra estatal y YPF</h3>
+        <ul class="clean">
+          <li>Hospital Presidente Alvear, en Kilómetro 3.</li>
+          <li>Una escuela y la capilla Santa Lucía del yacimiento.</li>
+          <li>Gamelas, una proveeduría —hoy el CERET— y más escuelas.</li>
+          <li>Puerto, muelle propio y otro adquirido en Caleta Córdova.</li>
+          <li>Usina eléctrica central, habilitada en 1927.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Compañías y patrimonio</h3>
+        <ul class="clean">
+          <li>Shell, en Diadema.</li>
+          <li>Astra, en Kilómetro 20.</li>
+          <li>Compañía Ferrocarrilera Patagónica.</li>
+          <li>Cines históricos; el viejo cine de Kilómetro 8.</li>
+          <li>Chalet Huergo, construido en 1919 y declarado Monumento Nacional Histórico.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="sec-head">
+      <span class="sec-num">07</span>
+      <h2 class="sec-title">Cifras de la nota</h2>
+      <span class="sec-rule"></span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Dato</th>
+            <th>Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1903</td>
+            <td>Profundidad de la primera perforación</td>
+            <td class="value">107 m</td>
+          </tr>
+          <tr>
+            <td>1907</td>
+            <td>Profundidad del pozo descubridor</td>
+            <td class="value">535 m</td>
+          </tr>
+          <tr>
+            <td>1922</td>
+            <td>Pozos del país ubicados en Comodoro</td>
+            <td class="value">130 de 137</td>
+          </tr>
+          <tr>
+            <td>1922</td>
+            <td>Petróleo almacenado en Comodoro</td>
+            <td class="value">60 t</td>
+          </tr>
+          <tr>
+            <td>1923</td>
+            <td>Producción del yacimiento</td>
+            <td class="value">450.328 m³</td>
+          </tr>
+          <tr>
+            <td>1923</td>
+            <td>Producción de YPF / pozos</td>
+            <td class="value">343.889 m³ · 89</td>
+          </tr>
+          <tr>
+            <td>1927</td>
+            <td>Potencia de la usina eléctrica central</td>
+            <td class="value">25.000 HP</td>
+          </tr>
+          <tr>
+            <td>1930</td>
+            <td>Producción del yacimiento</td>
+            <td class="value">1.170.300 m³</td>
+          </tr>
+          <tr>
+            <td>1930</td>
+            <td>Producción de YPF</td>
+            <td class="value">721.592 m³</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="sec-head">
+      <span class="sec-num">08</span>
+      <h2 class="sec-title">Fuente y alcance</h2>
+      <span class="sec-rule"></span>
+    </div>
+    <div class="source">
+      <span class="src-label">Documento de síntesis</span>
+      <p>Este documento resume la nota <strong>“Comodoro Rivadavia, la ciudad donde se descubrió el petróleo y nació la histórica YPF”</strong>, publicada por ADNSUR el domingo 13 de diciembre de 2020 en la sección Sociedad, con motivo del aniversario del hallazgo. Las fechas, cifras y citas se reproducen tal como aparecen en la nota.</p>
+      <p>El texto original no precisa el año de fundación de Comodoro Rivadavia ni la fecha exacta en que YPF volvió a manos del Estado. La referencia a la privatización de los años 90 y al posterior retorno estatal se limita a lo consignado por la nota.</p>
+      <p><a href="https://www.adnsur.com.ar/sociedad/comodoro-rivadavia--la-ciudad-donde-se-descubrio-el-petroleo-y-nacio-la-historica-ypf_a5fd5a66e1ff12e43bc98791d" target="_blank" rel="noopener">Ver la nota original en ADNSUR</a></p>
+    </div>
+  </section>
+
+  <footer class="doc-footer">
+    <span>Línea de tiempo · Comodoro Rivadavia y YPF</span>
+    <span>Fuente: ADNSUR · 13.12.2020</span>
+  </footer>
+
+</main>
+</body>
+</html>
